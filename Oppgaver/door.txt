@@ -1,0 +1,14 @@
+Begynn i øvre venstre hjørne i rektangelet foran deg og se sakte nedover. 
+Hvis du ser noe som stikker ut av døren er dette håndtaket, ta hånden rundt dette.
+Hvis det ikke er noe som stikker ut av døren, gjenta første linje bare på høyre siden.
+Så trykk ned på håndtaket og dra det mot deg.
+Døren burde nå være åpen og du kan gå gjennom.
+
+Trinn brukt:5, forventet rundt så mange når jeg planla.
+Det er gjort noen antakelser i programmet:
+	Romvesenet står foran døren og vet hva et rektangel er
+	Romvesenet kan se, og synsfelt er grei størrelse
+	Romvesenet har en hånd
+
+En veldig lett antakelse å gjøre med datamaskiner er at de klarer å se ting som er like, selv om de ikke er samme type.
+Eks: 2 = "2". For oss kan vi se at "ja det er jo likt, begge er tallet 2", mens en datamaskin vil si at en er tallet 2 mens den andre er skriften "2" og derfor ikke like
