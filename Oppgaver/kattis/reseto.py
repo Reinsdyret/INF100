@@ -16,6 +16,7 @@ Output the K-th number to be crossed out."""
 N = int(input("N: "))
 K = int(input("K: "))
 nums = []
+crossedNums = set()
 for i in range(2,N+1):
     nums.append(i)
 
@@ -24,10 +25,15 @@ def reseto(arr):
     s = 0
     p = 1
     while c < K:
-        temp = arr[0]
+        for i in range(0,len(arr)):
+            if arr[0] not in crossedNums:
+                print(i, " is i")
+                temp = arr[0]
+                break
         while temp * p <= N:
             s = temp * p
-            arr.pop(temp * p - 2)
+            print(crossedNums)
+            crossedNums.add(arr[temp * p - 2])
             p += 1
             c += 1
 
