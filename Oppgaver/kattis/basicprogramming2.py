@@ -37,23 +37,21 @@ def func2(l):
 
 
 def func3(l):
+    # Test that there even is a repeating number in the list
+    testSet = set(l)
+    tester = len(l) - len(testSet) > n/2
+    if (tester == False):
+        return -1
     dupCount = 0
     output = -1
-    k = 1
     for i in range(0,len(l)):
-        #print(l[i])
-        """while l[i] == l[i+1] and i+1 <= len(l):
-            if dupCount > n/2:
-                output = l[i]
-                break
-            dupCount += 1
-            k += 1"""
         for p in range(i,len(l)):
-            
             if l[i] == l[p]:
                 dupCount += 1
                 continue
-            dupCount = 0
+            break
+        if dupCount > n/2:
+            output = l[i]
             break
         dupCount = 0
     return output
@@ -70,14 +68,11 @@ def func4(l):
 
 
 def func5(l):
-    output = []
-    for i in range(0,len(l)):
-        if l[i] <= 999 and l[i] >= 100:
-            output.append(l[i])
-    output.sort()
-    for i in range(0,len(output)):
-        output[i] = str(output[i])
-    return " ".join(output)
+    newList = [item for item in l if item <= 999 and item >= 100]
+    newList.sort()
+    for i in range(0,len(newList)):
+        newList[i] = str(newList[i])
+    return " ".join(newList)
 
 
 functions = [func1,func2,func3,func4,func5]
