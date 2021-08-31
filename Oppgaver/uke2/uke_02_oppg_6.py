@@ -32,7 +32,7 @@ for i in range(1,len(lines)):
     longest = lines[i]
 
 # + 4 so because of 1 space on either side of line, plus the needed '@' to connect walls
-print('@' * (len(longest) + 4))
+print('\n' + '@' * (len(longest) + 4))
 for i in range(0,len(lines)):
     spaces = ' ' * (len(longest) - len(lines[i]))
     print('@' + ' ' + spaces + lines[i] + ' ' +  '@')
