@@ -12,16 +12,17 @@ Til slutt skal programmet printe ut hvor lang tid det tok å nå kokepunktet med
 Vis resultatet til nærmeste tiende, men bruk full presision i beregningen. 
 (Om du ser 26.2°C etter 2s har du brukt de avrundete verdiene)
 """
-#Importer decimal biblioteket for decimalhåndtering slik som ble sagt i en forelesning
-from decimal import Decimal, ROUND_HALF_UP
+#Importer decimal biblioteket for decimalhåndtering slik som ble sagt i en forelesning, gjelder bare for 26.3 avrunding
+# from decimal import Decimal, ROUND_HALF_UP
 
-temperature = Decimal(25.0)
-speed = Decimal(0.625)
+temperature = 25.0
+speed = 0.625
 seconds = 0
 
 while temperature < 100:
-    # Avrunde løsning funnet fra https://gist.github.com/jackiekazil/6201722 
-    rounded = Decimal(temperature.quantize(Decimal('.1'), rounding=ROUND_HALF_UP))
+    # Avrunde løsning funnet fra https://gist.github.com/jackiekazil/6201722 FOR Å RUNDE 26.25 OPP TIL 26.3
+    #rounded = Decimal(temperature.quantize(Decimal('.1'), rounding=ROUND_HALF_UP))
+    rounded = round(temperature,1)
 
     print(f"{seconds}s = {rounded}°C")
     temperature += speed
