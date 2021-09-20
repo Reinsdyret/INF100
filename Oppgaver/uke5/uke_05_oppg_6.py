@@ -10,9 +10,6 @@ def hvem_eldst(name1,age1,name2,age2):
     """Function takes in name and age for two different people and returns string with the oldest person"""
     lookup = {
         age1: name1,
-        age2: name2
-    }
+        age2: name2}
     max_age = max(age1,age2)
-    print(lookup[max_age])
-
-#hvem_eldst("lash",)
+    return f"{lookup[max_age]} er {max_age} år og eldst"
