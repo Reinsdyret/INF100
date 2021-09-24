@@ -9,7 +9,7 @@ import math
 
 def egen_abs(a):
     """Function takes in integer a and returns the absolute value of a"""
-    return int(math.sqrt(a**2))
+    return float(math.sqrt(a**2))
 
 
 def egen_max(a,b):
@@ -32,3 +32,4 @@ def egen_len(text):
         counter += 1
     return counter - 1
 
+print(egen_abs(-82.6))

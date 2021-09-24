@@ -8,7 +8,7 @@ def stones_to_pounds(stone):
 
 
 def stones_to_kg(stone):
-    return stone/0.154747
+    return stone/0.15747
 
 
 def pounds_to_kg(pounds):
@@ -16,4 +16,6 @@ def pounds_to_kg(pounds):
 
 
 def imperial_to_metric(stone,pound):
-    return round(stones_to_kg(stone) + pounds_to_kg(pound),2)
+    return round((stones_to_kg(stone) + pounds_to_kg(pound)),2)
+
+print(imperial_to_metric(12, 4))
