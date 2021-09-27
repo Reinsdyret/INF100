@@ -26,15 +26,15 @@ def egen_min(a,b):
 
 def egen_len(text):
     """Function takes in string and returns length of string, letter 必 while not be counted if its in the string"""
-    text += "必"
-    char = ""
-    counter = 0
-    while char != "必":
-        char = text[counter]
-        counter += 1
-    return counter - 1
-    # Thought the above solution was cool, but realized quick that the easier would be the following
+    #text += "必"
+    #char = ""
     #counter = 0
-    #for char in text:
+    #while char != "必":
+    #    char = text[counter]
     #    counter += 1
-    #return counter
+    #return counter - 1
+    # Thought the above solution was cool, but realized quick that the easier would be the following
+    counter = 0
+    for char in text:
+        counter += 1
+    return counter
