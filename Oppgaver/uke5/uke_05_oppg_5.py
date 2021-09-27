@@ -9,7 +9,9 @@ import math
 
 def egen_abs(a):
     """Function takes in integer a and returns the absolute value of a"""
-    return int(math.sqrt(a**2))
+    if a < 0:
+        a *= -1
+    return a
 
 
 def egen_max(a,b):
@@ -31,4 +33,8 @@ def egen_len(text):
         char = text[counter]
         counter += 1
     return counter - 1
-
+    # Thought the above solution was cool, but realized quick that the easier would be the following
+    #counter = 0
+    #for char in text:
+    #    counter += 1
+    #return counter
