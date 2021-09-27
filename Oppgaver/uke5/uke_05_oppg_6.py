@@ -12,4 +12,4 @@ def hvem_eldst(name1,age1,name2,age2):
         age1: name1,
         age2: name2}
     max_age = max(age1,age2)
-    return f"{lookup[max_age]} er {max_age} år og eldst"
+    return f"{lookup[max_age]} er {max_age} år og eldst."

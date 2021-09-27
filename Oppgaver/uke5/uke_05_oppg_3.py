@@ -6,4 +6,4 @@ Funksjonen skal returnere en streng med setningen "{navn} er {alder} år gammel.
 """
 
 def name_age(name,age):
-    return f"{name} er {age} år gammel"
+    return f"{name} er {age} år gammel."
