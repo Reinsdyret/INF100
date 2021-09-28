@@ -12,7 +12,8 @@ def remove_sevens(theList):
 
 def every_other(theList):
     newList = []
-    for i in range(0,8,2):
+    maxLen = 8 if len(theList) >= 8 else len(theList)
+    for i in range(0,maxLen,2):
         newList.append(theList[i])
 
     return newList
@@ -21,10 +22,13 @@ def reverse(theList):
     return theList[::-1]
 
 def double_values(theList):
+    yList = []
     for element in theList:
-        element *= 2
+        yList.append(element*2)
     
-    return theList
+    return yList
 
 def unique_values(theList):
-    return list(set(theList))
+    return list(dict.fromkeys(theList))
+
+print(every_other([1, 2, 3, 4, 3]))

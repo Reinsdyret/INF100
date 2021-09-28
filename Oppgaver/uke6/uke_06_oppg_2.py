@@ -4,18 +4,13 @@ In the question text x and y is used opposite of what they actually are,
 I will use the same just because
 """
 
-grid = [['.', '.', '.', '.', '.', '.'],
-        ['.', 'O', 'O', '.', '.', '.'],
-        ['O', 'O', 'O', 'O', '.', '.'],
-        ['O', 'O', 'O', 'O', 'O', '.'],
-        ['.', 'O', 'O', 'O', 'O', 'O'],
-        ['O', 'O', 'O', 'O', 'O', '.'],
-        ['O', 'O', 'O', 'O', '.', '.'],
-        ['.', 'O', 'O', '.', '.', '.'],
-        ['.', '.', '.', '.', '.', '.']]
-
-#for x in range(len(grid)):
-#    for y in range(len(grid[x])):
-
-for i in range(len(grid)):
-    
+def render_image(grid):
+        """Function taking in a 2d array and returning a string of this array rotated -pi radians."""
+        finishedString = ""
+        columns = len(grid[0])
+        for i in range(0,columns):
+                finishedString += "\n" if i != 0 else ""
+                column = [x[i] for x in grid]
+                for i in column:
+                        finishedString += i
+        return finishedString
