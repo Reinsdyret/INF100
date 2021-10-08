@@ -5,7 +5,7 @@ The plot should also have hashtags # around it.
 The function will return the plot as a string
 """
 
-def render_plot(coordinates):
+def render_plot(coordinates:list) -> str:
     """Function taking in a list of coordinates as tuples and returns a plot with the coordinates as *. With frame as #"""
     plot = ""
     #Find min and max coordinates
