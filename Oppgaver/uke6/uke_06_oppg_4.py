@@ -4,7 +4,7 @@ Make a function that takes in a list of integers and returns a string of a starm
 
 
 #Taking use of function from question 2
-def render_image(grid):
+def render_image(grid:list) -> str:
         """Function taking in a 2d array and returning a string of this array rotated -pi radians."""
         finishedString = ""
         columns = len(grid[0])
@@ -16,7 +16,7 @@ def render_image(grid):
         return finishedString
 
 
-def render_histogram(histogram):
+def render_histogram(histogram:list) -> str:
     """Takes in list of integers and returns string of a starmade bar chart, where each bar represents an integer in the array"""
     maxHeight = max(histogram)
 

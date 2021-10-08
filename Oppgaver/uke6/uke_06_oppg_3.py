@@ -4,7 +4,7 @@ This means that the bases A,T,C,G are taken in in a series. And the complimentar
 Make a function that does this:
 """
 
-def complement(dna):
+def complement(dna: str) -> str:
     """Takes in DNA sequense as string and returns the complimentary DNA sequence"""
     returnDna = ""
     complimentary = {

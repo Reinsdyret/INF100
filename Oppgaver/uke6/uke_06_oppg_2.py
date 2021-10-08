@@ -4,7 +4,7 @@ In the question text x and y is used opposite of what they actually are,
 I will use the same just because
 """
 
-def render_image(grid):
+def render_image(grid:list) -> str:
         """Function taking in a 2d array and returning a string of this array rotated -pi radians."""
         finishedString = ""
         columns = len(grid[0])
