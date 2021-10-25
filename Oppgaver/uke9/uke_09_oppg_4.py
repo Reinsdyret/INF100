@@ -6,7 +6,7 @@ If the book is in stock:
 'Vi har amount av "title"' should be printed
 The program will exit if the input is empty"""
 
-def find_book(title,stock):
+def find_book(title:str,stock:dict) -> str:
     """Takes in a title and stock and returns how many of that title is in stock"""
     if title not in stock:
         return f'Vi har 0 av "{title}"'
