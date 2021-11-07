@@ -1,5 +1,5 @@
 """Sheesh"""
-import decimal
+from decimal import *
 
 class NoPrice(Exception):
     """Exception for when there is no price for the product"""
@@ -10,93 +10,84 @@ class NotEnoughPaid(Exception):
     pass
 
 
+def get_price(product,prices_filename:str) -> float:
+    """Get price of product from price file, if there is no price an exception is raised"""
+    price = False
+    with open(prices_filename, "r") as prices:
+        for line in prices:
+            name, price_in_file = line.strip().split(";")
+            if name == product:
+                price = price_in_file
+    if price == False:
+        raise NoPrice
+    return Decimal(str(price))
+
+
+def get_amount(toDo,product,cash_register_filename:str) -> int:
+    """Get amount of product in cash register history"""
+    amount = 0
+    with open(cash_register_filename, "r") as cash_register:
+        for line in cash_register:
+            action, name = line.strip().split(";")
+            if name == product and toDo == action:
+                amount += 1
+    return amount
+
+
 def receipt_content(prices_filename, cash_register_filename):
     """Construct contents of a receipt of the cash register events,
     given the store prices."""
 
+    # list_of_tuples.sort(key=lambda x:x[1]) for å sortere en liste med tupler etter andre verdi
     list_of_purchase_and_return = []
     products = []
     list_of_returned = []
     returned_products = []
-    total_price = 0
-    paid = 0
+    total_price = Decimal('0')
+    paid = Decimal('0')
     with open(cash_register_filename, "r") as cash_registrer:
         with open(prices_filename, "r") as prices:
             for line in cash_registrer:
                 action, value = line.strip().split(";")
                 if action == "pay":
-                    paid += float(value)
+                    paid += Decimal(str(value))
                 elif action == "buy":
                     if value in products:
                         continue
                     products.append(value)
                     # Find how many products are being bought
-                    count_product = 0
-                    for new_line in cash_registrer:
-                        el1,el2 = new_line.strip().split(";")
-                        if el1 == "buy" and el2 == value:
-                            count_product += 1
+                    amount = get_amount(action,value,cash_register_filename)
                     # Find the cost of the product if exists
-                    cost = False
-                    for prices_line in prices:
-                        product, price = prices_line.split(";")
-                        if product == value:
-                            print(float(price) * count_product)
-                            cost = float(price) * count_product
-                    
-                    # Raise error if the product is not in prices file
-                    if cost == False:
-                        raise NoPrice
-
+                    cost = get_price(value,prices_filename) * Decimal(str(amount))
                     # Add the total cost to the total price
                     total_price += cost
 
-                    list_of_purchase_and_return.append(tuple((count_product,value,cost)))
+                    list_of_purchase_and_return.append(tuple((amount,value,cost)))
                 elif action == "return":
                     if value in returned_products:
                         continue
                     returned_products.append(value)
                     # Find how many products are being returned
-                    count_product = 0
-                    for new_line in cash_registrer:
-                        el1,el2 = new_line.split(";")
-                        if el1 == "return" and el2 == value:
-                            count_product -= 1
-                    # Find the cost of the product if exists
-                    cost = False
-                    for prices_line in prices:
-                        product, price = prices_line.split(";")
-                        if product == value:
-                            cost = float(price) * count_product
-                    
-                    # Raise error if the product is not in prices file
-                    if not cost:
-                        raise NoPrice
-                    
+                    amount = get_amount(action,value,cash_register_filename)
+                    #Define cost
+                    cost = get_price(value,prices_filename) * Decimal(str(amount)) * -1
                     # Add the total cost to the total price
                     total_price += cost
 
-                    list_of_returned.append(tuple((count_product,value,cost)))
-                    returned += count_product
+                    list_of_returned.append(tuple((amount * -1,value,cost)))
+    list_of_purchase_and_return.sort(key=lambda x:x[1])
+    list_of_returned.sort(key=lambda x:x[1])
     for tuple_returned in list_of_returned:
         list_of_purchase_and_return.append(tuple_returned)
     
-    total_mva = total_price * 0.2
+    total_mva = total_price * Decimal('0.2')
     paid_back = total_price - paid
     
     # Raise error if not enough is paid
-    if paid_back < 0:
+    if paid_back > 0:
         raise NotEnoughPaid
-    
     return tuple((list_of_purchase_and_return,total_price,total_mva,paid,paid_back))
     
-
-
-
-                    
-
-
-
 
 def receipt(prices_filename, cash_register_filename):
     """Construct a receipt of the cash register events,
@@ -127,4 +118,4 @@ def receipt(prices_filename, cash_register_filename):
 
     return "\n".join(receipt_lines)
 
-print(receipt("prices.txt","cash_register.txt"))
+#print(receipt("prices.txt","cash_register.txt"))

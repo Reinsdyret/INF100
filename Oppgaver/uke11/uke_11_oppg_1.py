@@ -10,11 +10,11 @@ def mean(data:list) -> float:
 
 def median(data:list) -> float:
     """Return the median of a list of numbers"""
-    sorted_data = data.sort()
+    sorted_data = sorted(data)
     if len(sorted_data) % 2 == 0:
-        sum_two_middle = sorted_data[len(sorted_data)/2] + sorted_data[len(sorted_data)/2 - 1]
+        sum_two_middle = sorted_data[int(len(sorted_data)/2)] + sorted_data[int(len(sorted_data)/2 - 1)]
         return sum_two_middle / 2
-    return sorted_data[len(sorted_data) / 2]
+    return sorted_data[int(len(sorted_data) / 2)]
 
 
 def mode(data:list):
