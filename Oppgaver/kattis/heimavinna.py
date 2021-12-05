@@ -6,20 +6,15 @@ A example of an input is 1-3;5;7;10-13 and this means that Hneitir needs to solv
 
 Output
 Write out one integer n, the number of problems that Hneitir has to solve."""
-import sys
 
-problems = sys.stdin.readline().strip().split(';')
-problemCount = 0
-i = 0
-while i < len(problems):
-    for p in range(0,len(problems[i])):
-        if problems[i][p] == '-':
-            num1 = int(problems[i][:p])
-            num2 = int(problems[i][p+1:])
-            problemCount += num2 - num1 + 1
-            problems.pop(i)
-            break
-    i += 1
+problems = input().split(";")
+sum_problems = 0
 
-problemCount += len(problems)
-print(problemCount)
+for problem in problems:
+    if "-" in problem:
+        num1, num2 = map(int,problem.split("-"))
+        sum_problems += num2 - num1 + 1
+    else:
+        sum_problems += 1
+
+print(sum_problems)
